@@ -1,0 +1,114 @@
+[gd_scene load_steps=15 format=3 uid="uid://ba435l6xjx80r"]
+
+[ext_resource type="Script" uid="uid://bxkgtddnypdl5" path="res://script/enemy_flying_things.gd" id="1_wvruu"]
+[ext_resource type="Texture2D" uid="uid://qn7tk7n7mgon" path="res://asset/Monsters_Creatures_Fantasy/Monsters_Creatures_Fantasy/Flying eye/Flight.png" id="1_xuw23"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvruu"]
+atlas = ExtResource("1_xuw23")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_da32f"]
+atlas = ExtResource("1_xuw23")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em7ou"]
+atlas = ExtResource("1_xuw23")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2hgd"]
+atlas = ExtResource("1_xuw23")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7wow"]
+atlas = ExtResource("1_xuw23")
+region = Rect2(600, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2p8r"]
+atlas = ExtResource("1_xuw23")
+region = Rect2(750, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hww7"]
+atlas = ExtResource("1_xuw23")
+region = Rect2(900, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0shu"]
+atlas = ExtResource("1_xuw23")
+region = Rect2(1050, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ftjft"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvruu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_da32f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em7ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2hgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7wow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2p8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hww7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0shu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xuw23"]
+size = Vector2(42, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvruu"]
+size = Vector2(39, 20.7773)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_da32f"]
+size = Vector2(129, 92.743)
+
+[node name="flying_enemy" type="CharacterBody2D"]
+rotation = 0.005574
+script = ExtResource("1_wvruu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5, 14)
+sprite_frames = SubResource("SpriteFrames_ftjft")
+animation = &"idle"
+frame_progress = 0.518333
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 15)
+shape = SubResource("RectangleShape2D_xuw23")
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(-3, 20)
+scale = Vector2(1, 1.125)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, -2.94467)
+shape = SubResource("RectangleShape2D_wvruu")
+
+[node name="PlayerDetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
+position = Vector2(0.261977, 46.9993)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_da32f")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(1.10589, 18.9941)
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]
