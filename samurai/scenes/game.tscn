@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxlqp2q5a8g1v"]
+[gd_scene load_steps=12 format=3 uid="uid://bxlqp2q5a8g1v"]
 
 [ext_resource type="Texture2D" uid="uid://cmd6qxox0a7ra" path="res://assets/tilemaps/tilemaps ground forest l4.png" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://d3qb73aiygc14" path="res://scenes/Player/player.tscn" id="1_yqjtg"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://o40piwxp6a7e" path="res://scenes/Level/first_level.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://677lcvn2m71e" path="res://assets/tilemaps/Drawing_3_3_1.png" id="3_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://wu7rfkudc1tn" path="res://scenes/enemy/enemy_things.tscn" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://bi1fioiccv6lw" path="res://assets/tilemaps/tree-1.png" id="4_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://ba435l6xjx80r" path="res://scenes/enemy/flying_enemy.tscn" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://n16cumd3bo5t" path="res://assets/tilemaps/tree-2.png" id="5_vtaks"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gee14"]
 
@@ -26,29 +28,144 @@ position = Vector2(172, -412)
 scale = Vector2(2.88377, 3.75)
 texture = ExtResource("1_u5sy4")
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background/ParallaxBackground2"]
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="Background/ParallaxBackground2"]
 motion_mirroring = Vector2(1400, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
-position = Vector2(-504.5, -127.5)
-scale = Vector2(0.5635, 0.639)
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer5"]
+position = Vector2(-620, -76)
+scale = Vector2(0.138852, 0.120625)
 texture = ExtResource("2_gee14")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Background/ParallaxBackground2"]
 motion_mirroring = Vector2(1400, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer"]
-position = Vector2(58, -149)
+position = Vector2(-262, -97)
+scale = Vector2(0.127171, 0.14175)
 texture = ExtResource("3_0tnpc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer"]
+position = Vector2(26, -129)
+scale = Vector2(0.229148, 0.284699)
+texture = ExtResource("3_0tnpc")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer"]
+position = Vector2(-373, -119)
+scale = Vector2(0.229148, 0.284699)
+texture = ExtResource("3_0tnpc")
+flip_h = true
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Background/ParallaxBackground2"]
+position = Vector2(-185, -35)
+motion_mirroring = Vector2(1400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer4"]
+position = Vector2(-201, -10)
+scale = Vector2(0.0826621, 0.105926)
+texture = ExtResource("3_0tnpc")
+offset = Vector2(-983.887, -375.405)
+flip_h = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background/ParallaxBackground2"]
+motion_mirroring = Vector2(1400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(-378.82, -254.195)
+scale = Vector2(2.1206, 1.84223)
+texture = ExtResource("4_0tnpc")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(-492, -224)
+scale = Vector2(2.1206, 1.84223)
+texture = ExtResource("4_0tnpc")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(-136, -243)
+scale = Vector2(2.1206, 1.84223)
+texture = ExtResource("4_0tnpc")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(1, -222)
+scale = Vector2(2.1206, 1.84223)
+texture = ExtResource("4_0tnpc")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(1, -222)
+scale = Vector2(2.1206, 1.84223)
+texture = ExtResource("4_0tnpc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(6, -231)
+scale = Vector2(2.1206, 1.84223)
+texture = ExtResource("5_vtaks")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(355, -233)
+scale = Vector2(2.1206, 1.84223)
+texture = ExtResource("5_vtaks")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(463, -271)
+scale = Vector2(2.1206, 1.84223)
+texture = ExtResource("5_vtaks")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(569, -254)
+scale = Vector2(2.1206, 1.84223)
+texture = ExtResource("5_vtaks")
+
+[node name="Sprite2D10" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(687, -230)
+scale = Vector2(2.1206, 1.84223)
+texture = ExtResource("5_vtaks")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(805, -254)
+scale = Vector2(2.1206, 1.84223)
+texture = ExtResource("5_vtaks")
+
+[node name="Sprite2D12" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(921, -259)
+scale = Vector2(2.1206, 1.84223)
+texture = ExtResource("5_vtaks")
+
+[node name="Sprite2D13" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(1034, -240)
+scale = Vector2(2.1206, 1.84223)
+texture = ExtResource("5_vtaks")
 
 [node name="FirstLevel" parent="." instance=ExtResource("2_lnu2h")]
 position = Vector2(1, -4)
 
 [node name="player" parent="." instance=ExtResource("1_yqjtg")]
-position = Vector2(-280, -202)
+position = Vector2(-791, -202)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(26, 28)
+zoom = Vector2(2.255, 2.255)
+
+[node name="Control" type="Control" parent="player/Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -255.0
+offset_top = -144.0
+offset_right = -215.0
+offset_bottom = -104.0
+
+[node name="ColorRect" type="ColorRect" parent="player/Camera2D/Control"]
+layout_mode = 0
+offset_left = -11.0
+offset_right = 519.0
+offset_bottom = 51.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="player/Camera2D/Control"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 56.0
+offset_bottom = 35.0
+text = "Test"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-381, -298)
@@ -67,7 +184,7 @@ position = Vector2(2232, -111)
 position = Vector2(192, -117)
 
 [node name="EnemyThings2" parent="Enemies" instance=ExtResource("3_lnu2h")]
-position = Vector2(495, -154)
+position = Vector2(755, -123)
 
 [node name="EnemyThings" parent="Enemies" instance=ExtResource("3_lnu2h")]
 position = Vector2(-16, -238)
