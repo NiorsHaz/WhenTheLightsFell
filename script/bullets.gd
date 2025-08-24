@@ -3,14 +3,13 @@ extends CharacterBody2D
 var pos: Vector2
 var rota: float
 var dir: float
-var speed = 150  # Increased speed for better visibility
+
+var speed: float = 0.0  # <-- pas de valeur fixe, définie par le boss
 
 func _ready() -> void:
 	global_position = pos
 	global_rotation = rota
-	speed = speed
 	owner = get_parent()
-	#print(owner.name ," Bullet ready - pos: ", pos, " dir: ", dir, " rota: ", rota)
 
 # FIXED: Changed *physics*process to _physics_process
 func _process(delta: float) -> void:

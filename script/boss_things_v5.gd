@@ -31,7 +31,7 @@ extends CharacterBody2D
 
 @export_group("Projectiles")
 @export var bullet_path: PackedScene
-@export var bullet_speed: float = 300.0
+@export var bullet_speed: float = 1000.0
 
 # ===== VARIABLES INTERNES =====
 enum BossPhase { DEBUT, MILIEU, DECHAINEMENT }
@@ -394,12 +394,12 @@ func _execute_ranged_attack() -> void:
 
 func fire():
 	if bullet_path == null:
-		##print("ERROR: bullet_path is null!")
+		#print("ERROR: bullet_path is null!")
 		return
 	
 	var bullet = bullet_path.instantiate()
 	if bullet == null:
-		##print("ERROR: Failed to instantiate bullet!")
+		#print("ERROR: Failed to instantiate bullet!")
 		return
 	
 	# Get boss position at instant T (using Node2D like classic enemy)
@@ -413,24 +413,33 @@ func fire():
 		var direction_to_player = (player_position - boss_position).normalized()
 		var bullet_angle = direction_to_player.angle()
 		
+		# Set bullet speed based on current phase
+		var bullet_speed_value = bullet_speed
+		match current_phase:
+			BossPhase.DEBUT:
+				bullet_speed_value = bullet_speed
+			BossPhase.MILIEU:
+				bullet_speed_value = bullet_speed * phase2_speed_multiplier
+			BossPhase.DECHAINEMENT:
+				bullet_speed_value = bullet_speed * phase3_speed_multiplier
+		
 		# Set bullet properties BEFORE adding to scene
 		bullet.pos = boss_position
 		bullet.dir = bullet_angle
 		bullet.rota = bullet_angle
-		bullet.speed = bullet_speed  # Utiliser la vitesse du boss
+		bullet.speed = bullet_speed_value
 		
 		# Add bullet to scene AFTER setting properties
 		get_parent().add_child(bullet)
 		
-		##print("Boss fired bullet toward player!")
-		##print("Boss position (instant T): ", boss_position)
-		##print("Player position (instant T): ", player_position)
-		##print("Bullet direction: ", direction_to_player)
-		##print("Bullet angle: ", bullet_angle)
+		#print("Boss fired bullet toward player!")
+		#print("Boss position (instant T): ", boss_position)
+		#print("Player position (instant T): ", player_position)
+		#print("Bullet direction: ", direction_to_player)
+		#print("Bullet angle: ", bullet_angle)
 	else:
-		##print("Boss: No target player for ranged attack!")
+		#print("Boss: No target player for ranged attack!")
 		bullet.queue_free()
-
 func _execute_area_attack() -> void:
 	##print("Boss executes AREA attack!")
 	
@@ -481,10 +490,11 @@ func _move_away_from_player(delta: float) -> void:
 		return
 	
 	var distance = global_position.distance_to(target_player.global_position)
-	
+	print("distance actu",distance ,"security" , max_retreat_distance)
 	# 🔒 Si on a déjà atteint la distance max, on n'essaie plus de fuir
 	if distance >= max_retreat_distance:
 		velocity.x = 0
+		print("ato am bug")
 		if sprite:
 			sprite.play("idle")
 		return

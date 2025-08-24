@@ -164,4 +164,4 @@ tile_set = SubResource("TileSet_33cqm")
 position = Vector2(216, -68)
 base_speed = 30.0
 bullet_path = ExtResource("10_yq8tf")
-bullet_speed = 30.0
+bullet_speed = 100.0
