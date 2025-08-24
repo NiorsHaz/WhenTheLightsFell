@@ -3,62 +3,31 @@ extends CharacterBody2D
 var pos: Vector2
 var rota: float
 var dir: float
-var speed = 200
-var ignore_bodies: Array[String] = ["flying_enemy", "BossNegga"]  # Bodies to ignore
-var lifetime: float = 20.0  # Bullet lifetime in seconds
-var time_alive: float = 0.0
+var speed = 150  # Increased speed for better visibility
 
 func _ready() -> void:
 	global_position = pos
 	global_rotation = rota
-	_setup_collision_exceptions()
-	#print("Bullet ready - pos: ", pos, " dir: ", dir, " rota: ", rota)
+	owner = get_parent()
+	print(owner.name ," Bullet ready - pos: ", pos, " dir: ", dir, " rota: ", rota)
 
-func _setup_collision_exceptions() -> void:
-	# Find and add collision exceptions for ignored bodies
-	for body_name in ignore_bodies:
-		var body = get_node_or_null("../" + body_name)
-		if body and body is CollisionObject2D:
-			# Add collision exception so bullet passes through
-			add_collision_exception_with(body)
-			print("Added collision exception for: ", body_name)
+# FIXED: Changed *physics*process to _physics_process
+func _process(delta: float) -> void:
+	position +=transform.x * speed * delta
 
-func _physics_process(delta: float) -> void:
-	# Update lifetime
-	time_alive += delta
-	if time_alive >= lifetime:
-		print("Bullet expired after ", lifetime, " seconds")
-		print("bullet speed",speed)
-		queue_free()
-		return
-	
-	velocity = Vector2(speed, 0).rotated(dir)
-	move_and_slide()
-	
-	# Check for collisions (now only with non-ignored bodies)
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		
-		print("Bullet collided with: ", collider.name, " (type: ", collider.get_class(), ")")
-		
-		# Check if it's environment (StaticBody2D, TileMap, etc.)
-		if collider is StaticBody2D or collider is TileMap:
-			print("Bullet hit environment: ", collider.name)
-			queue_free()
-			return
-		
-		# Check if it's a CharacterBody2D (player, other enemies)
-		if collider is CharacterBody2D:
-			# Damage the target if it can take damage
-			const damage_amount = 0
-			if collider.has_method("take_damage"):
-				collider.take_damage(damage_amount)
-				print("Bullet dealt damage to: ", collider.name)
-			
-			# Destroy bullet after hitting a character
-			queue_free()
-			return
+
+func _on_body_entered(body: Node2D) -> void:
+	print(body.name)
+
+
+func _on_timer_timeout() -> void:
+	queue_free()
 
 func bullet():
 	pass
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name != "BossNegga":
+		print(body.name, " Took 1 damage")
+		body.take_damage(1)

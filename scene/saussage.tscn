@@ -137,6 +137,8 @@ size = Vector2(50.8572, 59.4286)
 
 [node name="saussage" type="CharacterBody2D"]
 scale = Vector2(1.75, 1.75)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_wiiqt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -154,6 +156,5 @@ debug_color = Color(0.703616, 0.271714, 1, 0.42)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamgeTestBox"]
 light_mask = 3
 position = Vector2(0.571429, -6.85714)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_tdvn3")
 one_way_collision_margin = 0.0
