@@ -41,11 +41,12 @@ func player():
 
 
 func take_damage(damage: int) -> void:
-	print("🩸 PLAYER TAKING DAMAGE: ", damage)
-	print("Health before: ", health)
+	#print("🩸 PLAYER TAKING DAMAGE: ", damage)
+	#print("Health before: ", health)
 	health -= damage
-	print("Health after: ", health)
+	#print("Health after: ", health)
 	
 	if health <= 0:
-		print("💀 PLAYER DIED!")
+		#print("💀 PLAYER DIED!")
+		pass
 		# Add death logic here

@@ -16,6 +16,7 @@ extends CharacterBody2D
 @export var melee_range: float = 80.0
 @export var ranged_attack_distance: float = 200.0
 @export var retreat_distance: float = 150.0
+@export var max_retreat_distance: float = 200.0
 @export var detection_range: float = 250.0  # New: for PlayerDetectionArea size
 
 @export_group("Attack Timers")
@@ -80,26 +81,28 @@ func _setup_hit_box() -> void:
 		hit_box.body_entered.connect(_on_hit_box_body_entered)
 		hit_box.area_entered.connect(_on_hit_box_area_entered)
 		
-		print("Boss HitBox configured successfully")
+		#print("Boss HitBox configured successfully")
 	else:
-		print("WARNING: Boss HitBox not found! Add an Area2D named 'HitBox' to the boss scene.")
+		pass
+		#print("WARNING: Boss HitBox not found! Add an Area2D named 'HitBox' to the boss scene.")
 
 # Détecte quand un CharacterBody2D (comme le joueur) entre dans la hitbox
 func _on_hit_box_body_entered(body: Node2D) -> void:
-	print("Body entered boss hitbox: ", body.name)
+	#print("Body entered boss hitbox: ", body.name)
 	
 	# Vérifier si c'est le joueur
 	if body.has_method("player") or body.is_in_group("player"):
-		print("Player body entered boss hitbox!")
+		pass
+		#print("Player body entered boss hitbox!")
 		# Ici vous pouvez gérer si le joueur cause des dégâts au boss lors du contact direct
 
 # Détecte quand un Area2D (comme DamageTestBox) entre dans la hitbox
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	print("Area entered boss hitbox: ", area.name)
+	#print("Area entered boss hitbox: ", area.name)
 	
 	# Vérifier si c'est la DamageTestBox du joueur
 	if area.name == "DamgeTestBox":
-		print("Player's DamageTestBox hit the boss!")
+		#print("Player's DamageTestBox hit the boss!")
 		_on_player_attack_hit()
 		# Le joueur attaque le boss
 		var damage = 1  # Ou récupérer la valeur depuis le joueur
@@ -110,7 +113,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 
 # Fonction appelée quand le joueur frappe le boss
 func _on_player_attack_hit() -> void:
-	print("Boss was hit by player attack!")
+	#print("Boss was hit by player attack!")
 	
 	# Ici vous pouvez ajouter :
 	# - Effet sonore
@@ -131,22 +134,22 @@ func _find_player() -> void:
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		target_player = players[0]
-		#print("Boss found player: ", target_player.name)
+		##print("Boss found player: ", target_player.name)
 		return
 	
 	# Method 2: Search by node name (adjust the name to match your player)
 	target_player = get_node_or_null("../Niggaman")
 	if target_player:
-		#print("Boss found player by name: ", target_player.name)
+		##print("Boss found player by name: ", target_player.name)
 		return
 		
 	# Method 3: Search the entire scene tree for player
 	target_player = _find_node_by_method(get_tree().root, "player")
 	if target_player:
-		#print("Boss found player by searching: ", target_player.name)
+		##print("Boss found player by searching: ", target_player.name)
 		return
 	
-	#print("Boss: No player found!")
+	##print("Boss: No player found!")
 
 func _find_node_by_method(node: Node, method_name: String) -> Node:
 	if node.has_method(method_name):
@@ -215,7 +218,7 @@ func _update_phase() -> void:
 
 func _enter_phase(new_phase: BossPhase) -> void:
 	current_phase = new_phase
-	##print("Boss entering phase: ", BossPhase.keys()[current_phase])
+	###print("Boss entering phase: ", BossPhase.keys()[current_phase])
 	
 	match current_phase:
 		BossPhase.DEBUT:
@@ -234,7 +237,7 @@ func _choose_random_pattern() -> void:
 		return
 	
 	current_pattern = AttackPattern.values()[randi() % AttackPattern.size()]
-	##print("Boss chose pattern: ", AttackPattern.keys()[current_pattern])
+	###print("Boss chose pattern: ", AttackPattern.keys()[current_pattern])
 
 func _handle_movement_and_attacks(delta: float) -> void:
 	if not target_player:
@@ -304,8 +307,13 @@ func _handle_chaotic_combat(distance_to_player: float, delta: float) -> void:
 		
 		BossState.RETREATING:
 			if distance_to_player < retreat_distance:
+				print("retreat value" ,retreat_distance , "distance player" , distance_to_player)
 				_move_away_from_player(delta)
+			elif distance_to_player >= max_retreat_distance:
+				print("limit")
+				_move_towards_player(delta)
 			else:
+				# zone idéale → commence l’attaque
 				_start_ranged_attack()
 		
 		BossState.ATTACKING_RANGED:
@@ -469,14 +477,26 @@ func _move_towards_player(delta: float) -> void:
 		sprite.play("idle")  # ou "walk" si tu as une animation de marche
 
 func _move_away_from_player(delta: float) -> void:
+	if not target_player:
+		return
+	
+	var distance = global_position.distance_to(target_player.global_position)
+	
+	# 🔒 Si on a déjà atteint la distance max, on n'essaie plus de fuir
+	if distance >= max_retreat_distance:
+		velocity.x = 0
+		if sprite:
+			sprite.play("idle")
+		return
+	
+	# Sinon on fuit normalement
 	var direction = (global_position - target_player.global_position).normalized()
-	# Ne modifier que la composante X de la vitesse pour rester au sol
+	# Ne modifier que la composante X pour rester au sol
 	velocity.x = direction.x * current_speed
-	# Garder la composante Y intacte (pour la gravité)
 	
 	# Animation de mouvement
 	if sprite:
-		sprite.play("idle")  # ou "walk" si tu as une animation de marche
+		sprite.play("walk") # ou "idle" si tu veux qu’il recule sans animer
 
 func _damage_players_in_area(area: Area2D, damage: int) -> void:
 	if not area:
