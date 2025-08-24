@@ -1,0 +1,366 @@
+extends CharacterBody2D
+
+# ===== VARIABLES EXPORT (Paramétrables dans l'éditeur) =====
+@export_group("Boss Stats")
+@export var max_health: int = 3
+@export var current_health: int = 3
+
+@export_group("Movement")
+@export var base_speed: float = 100.0
+@export var phase2_speed_multiplier: float = 1.3
+@export var phase3_speed_multiplier: float = 1.5
+
+@export_group("Attack Distances")
+@export var melee_range: float = 80.0
+@export var ranged_attack_distance: float = 200.0
+@export var retreat_distance: float = 150.0
+
+@export_group("Attack Timers")
+@export var melee_cooldown: float = 1.5
+@export var ranged_cooldown: float = 2.0
+@export var area_attack_cooldown: float = 3.0
+@export var pattern_change_delay: float = 2.0
+
+@export_group("Area Attack")
+@export var area_attack_radius: float = 120.0
+@export var area_attack_damage: int = 2
+
+@export_group("Projectiles")
+@export var bullet_path: PackedScene
+@export var bullet_speed: float = 30.0
+
+# ===== VARIABLES INTERNES =====
+enum BossPhase { DEBUT, MILIEU, DECHAINEMENT }
+enum AttackPattern { MELEE_THEN_RANGED, RANGED_THEN_MELEE }
+enum AttackType { MELEE, RANGED, AREA }
+enum BossState { MOVING_TO_MELEE, ATTACKING_MELEE, RETREATING, ATTACKING_RANGED, ATTACKING_AREA, WAITING }
+
+var current_phase: BossPhase = BossPhase.DEBUT
+var current_pattern: AttackPattern
+var current_state: BossState = BossState.WAITING
+var current_speed: float
+
+var target_player: Node2D
+var player_detected: bool = false
+
+# Timers
+var attack_timer: float = 0.0
+var pattern_timer: float = 0.0
+var state_timer: float = 0.0
+
+# Flags
+var can_attack: bool = true
+var pattern_step: int = 0  # 0 = première attaque du pattern, 1 = deuxième attaque
+var facing_right: bool = true
+
+# Nodes (à assigner dans l'éditeur ou _ready)
+@onready var detection_area = $PlayerDetectionArea  # Area2D pour détecter le joueur
+@onready var melee_area = $MeleeAttackArea  # Area2D pour attaque mêlée
+@onready var area_attack_area = $AreaAttackArea  # Area2D pour attaque de zone
+@onready var sprite = $Sprite2D  # Sprite du boss
+
+func _ready() -> void:
+	current_health = max_health
+	current_speed = base_speed
+	_choose_random_pattern()
+	print("Boss initialized - Phase: ", BossPhase.keys()[current_phase])
+
+func _physics_process(delta: float) -> void:
+	_update_timers(delta)
+	_update_phase()
+	_handle_movement_and_attacks(delta)
+	_update_sprite_direction()
+
+func _update_timers(delta: float) -> void:
+	if attack_timer > 0:
+		attack_timer -= delta
+	if pattern_timer > 0:
+		pattern_timer -= delta
+	if state_timer > 0:
+		state_timer -= delta
+
+func _update_phase() -> void:
+	match current_health:
+		3:
+			if current_phase != BossPhase.DEBUT:
+				_enter_phase(BossPhase.DEBUT)
+		2:
+			if current_phase != BossPhase.MILIEU:
+				_enter_phase(BossPhase.MILIEU)
+		1:
+			if current_phase != BossPhase.DECHAINEMENT:
+				_enter_phase(BossPhase.DECHAINEMENT)
+		0:
+			_die()
+
+func _enter_phase(new_phase: BossPhase) -> void:
+	current_phase = new_phase
+	print("Boss entering phase: ", BossPhase.keys()[current_phase])
+	
+	match current_phase:
+		BossPhase.DEBUT:
+			current_speed = base_speed
+		BossPhase.MILIEU:
+			current_speed = base_speed * phase2_speed_multiplier
+		BossPhase.DECHAINEMENT:
+			current_speed = base_speed * phase3_speed_multiplier
+	
+	_choose_random_pattern()
+	pattern_step = 0
+
+func _choose_random_pattern() -> void:
+	if current_phase == BossPhase.DECHAINEMENT:
+		# En phase 3, pas de pattern fixe, tout est aléatoire
+		return
+	
+	current_pattern = AttackPattern.values()[randi() % AttackPattern.size()]
+	print("Boss chose pattern: ", AttackPattern.keys()[current_pattern])
+
+func _handle_movement_and_attacks(delta: float) -> void:
+	if not target_player or not player_detected:
+		return
+	
+	var distance_to_player = global_position.distance_to(target_player.global_position)
+	
+	match current_phase:
+		BossPhase.DEBUT, BossPhase.MILIEU:
+			_handle_pattern_based_combat(distance_to_player, delta)
+		BossPhase.DECHAINEMENT:
+			_handle_chaotic_combat(distance_to_player, delta)
+
+func _handle_pattern_based_combat(distance_to_player: float, delta: float) -> void:
+	match current_state:
+		BossState.WAITING:
+			if pattern_timer <= 0:
+				_start_pattern()
+		
+		BossState.MOVING_TO_MELEE:
+			if distance_to_player > melee_range:
+				_move_towards_player(delta)
+			else:
+				_start_melee_attack()
+		
+		BossState.ATTACKING_MELEE:
+			if attack_timer <= 0:
+				_execute_melee_attack()
+		
+		BossState.RETREATING:
+			if distance_to_player < retreat_distance:
+				_move_away_from_player(delta)
+			else:
+				_start_ranged_attack()
+		
+		BossState.ATTACKING_RANGED:
+			if attack_timer <= 0:
+				_execute_ranged_attack()
+
+func _handle_chaotic_combat(distance_to_player: float, delta: float) -> void:
+	match current_state:
+		BossState.WAITING:
+			if attack_timer <= 0:
+				_choose_random_attack()
+		
+		BossState.MOVING_TO_MELEE:
+			if distance_to_player > melee_range:
+				_move_towards_player(delta)
+			else:
+				_execute_melee_attack()
+		
+		BossState.RETREATING:
+			if distance_to_player < ranged_attack_distance:
+				_move_away_from_player(delta)
+			else:
+				_execute_ranged_attack()
+		
+		BossState.ATTACKING_AREA:
+			if attack_timer <= 0:
+				_execute_area_attack()
+
+func _start_pattern() -> void:
+	var first_attack = _get_pattern_attack(0)
+	_start_attack_type(first_attack)
+
+func _get_pattern_attack(step: int) -> AttackType:
+	match current_pattern:
+		AttackPattern.MELEE_THEN_RANGED:
+			return AttackType.MELEE if step == 0 else AttackType.RANGED
+		AttackPattern.RANGED_THEN_MELEE:
+			return AttackType.RANGED if step == 0 else AttackType.MELEE
+		_:
+			# Valeur par défaut si current_pattern n'est pas reconnu
+			return AttackType.MELEE
+
+func _choose_random_attack() -> void:
+	var random_attack = randi() % 3
+	match random_attack:
+		0: _start_attack_type(AttackType.MELEE)
+		1: _start_attack_type(AttackType.RANGED)
+		2: _start_attack_type(AttackType.AREA)
+
+func _start_attack_type(attack_type: AttackType) -> void:
+	match attack_type:
+		AttackType.MELEE:
+			current_state = BossState.MOVING_TO_MELEE
+		AttackType.RANGED:
+			current_state = BossState.RETREATING
+		AttackType.AREA:
+			current_state = BossState.ATTACKING_AREA
+			attack_timer = 1.0  # Temps de préparation
+
+func _start_melee_attack() -> void:
+	current_state = BossState.ATTACKING_MELEE
+	attack_timer = melee_cooldown
+	print("Boss preparing melee attack...")
+
+func _start_ranged_attack() -> void:
+	current_state = BossState.ATTACKING_RANGED
+	attack_timer = ranged_cooldown
+	print("Boss preparing ranged attack...")
+
+func _execute_melee_attack() -> void:
+	print("Boss executes MELEE attack!")
+	
+	# Activer la zone d'attaque mêlée
+	if melee_area:
+		_damage_players_in_area(melee_area, 1)
+	
+	_finish_attack()
+
+func _execute_ranged_attack() -> void:
+	print("Boss executes RANGED attack!")
+	
+	# Utiliser la fonction fire() comme l'ennemi classique
+	fire()
+	
+	_finish_attack()
+
+func fire():
+	print("Fire function called")
+	
+	if bullet_path == null:
+		print("ERROR: bullet_path is null!")
+		return
+	
+	var bullet = bullet_path.instantiate()
+	if bullet == null:
+		print("ERROR: Failed to instantiate bullet!")
+		return
+	
+	# Get enemy position at instant T (current moment)
+	var enemy_position = $Node2D.global_position
+	
+	if target_player != null:
+		# Get player position at instant T (current moment)
+		var player_position = target_player.global_position
+		
+		# Calculate direction from enemy to player at this exact moment
+		var direction_to_player = (player_position - enemy_position).normalized()
+		var bullet_angle = direction_to_player.angle()
+		
+		# Set bullet properties BEFORE adding to scene
+		bullet.pos = enemy_position
+		bullet.dir = bullet_angle
+		bullet.rota = bullet_angle
+		
+		print("Enemy position (instant T): ", enemy_position)
+		print("Player position (instant T): ", player_position)
+		print("Bullet direction: ", direction_to_player)
+		print("Bullet angle: ", bullet_angle)
+		
+		# Add bullet to scene AFTER setting properties
+		get_parent().add_child(bullet)
+	else:
+		print("No target player!")
+		bullet.queue_free() 
+
+
+func _execute_area_attack() -> void:
+	print("Boss executes AREA attack!")
+	
+	# Attaque de zone autour du boss
+	if area_attack_area:
+		_damage_players_in_area(area_attack_area, area_attack_damage)
+	
+	# Effet visuel (à ajouter selon tes besoins)
+	_create_area_attack_effect()
+	
+	_finish_attack()
+
+func _finish_attack() -> void:
+	if current_phase == BossPhase.DECHAINEMENT:
+		# Phase 3: Délai court entre attaques aléatoires
+		current_state = BossState.WAITING
+		attack_timer = 1.0
+	else:
+		# Phases 1-2: Suivre le pattern
+		pattern_step += 1
+		if pattern_step >= 2:
+			# Pattern terminé, recommencer
+			pattern_step = 0
+			current_state = BossState.WAITING
+			pattern_timer = pattern_change_delay
+			_choose_random_pattern()
+		else:
+			# Passer à la deuxième attaque du pattern
+			var next_attack = _get_pattern_attack(pattern_step)
+			_start_attack_type(next_attack)
+
+func _move_towards_player(delta: float) -> void:
+	var direction = (target_player.global_position - global_position).normalized()
+	velocity = direction * current_speed
+	move_and_slide()
+
+func _move_away_from_player(delta: float) -> void:
+	var direction = (global_position - target_player.global_position).normalized()
+	velocity = direction * current_speed
+	move_and_slide()
+
+func _damage_players_in_area(area: Area2D, damage: int) -> void:
+	if not area:
+		return
+	
+	var bodies = area.get_overlapping_bodies()
+	for body in bodies:
+		if body.has_method("take_damage"):
+			body.take_damage(damage)
+			print("Boss dealt ", damage, " damage to ", body.name)
+
+func _create_area_attack_effect() -> void:
+	# Ici tu peux ajouter des effets visuels/sonores
+	print("AREA ATTACK EFFECT!")
+
+func _update_sprite_direction() -> void:
+	if target_player:
+		facing_right = target_player.global_position.x > global_position.x
+		if sprite:
+			sprite.flip_h = not facing_right
+
+func take_damage(damage: int) -> void:
+	current_health -= damage
+	print("Boss took damage! Health: ", current_health, "/", max_health)
+	
+	# Effet de knockback ou d'invincibilité si nécessaire
+	_on_damaged()
+
+func _on_damaged() -> void:
+	# Effet visuel ou sonore quand le boss est touché
+	pass
+
+func _die() -> void:
+	print("Boss defeated!")
+	# Animation de mort, drop d'items, etc.
+	queue_free()
+
+# Signaux de détection du joueur
+func _on_player_detection_area_body_entered(body: Node2D) -> void:
+	if body.has_method("player"):  # Méthode pour identifier le joueur
+		target_player = body
+		player_detected = true
+		print("Boss detected player: ", body.name)
+
+func _on_player_detection_area_body_exited(body: Node2D) -> void:
+	if body == target_player:
+		player_detected = false
+		target_player = null
+		current_state = BossState.WAITING
+		print("Boss lost player")

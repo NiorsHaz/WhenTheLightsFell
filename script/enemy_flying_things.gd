@@ -26,11 +26,8 @@ var attack_altitude = 5.0  # Distance pour descendre au-dessus du joueur (param�
 var is_attacking = false
 var target_attack_position: Vector2
 var shooting_timer = 0.0
-var shot_interval = 0.2  # Délai entre les tirs en secondes
+var shot_interval = 0.7  # Délai entre les tirs en secondes
 var attack_flight_speed = 30.0  # Vitesse pour se positionner au-dessus du joueur
-
-# Scene du projectile à instancier (à assigner dans l'éditeur)
-@export var projectile_scene: PackedScene
 
 func _ready() -> void:
 	is_dead = false

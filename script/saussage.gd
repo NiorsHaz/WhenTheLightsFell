@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+var health = 3
 const SPEED = 100
 const JUMP_VELOCITY = -200.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -38,3 +38,14 @@ func _physics_process(delta: float) -> void:
 	
 func player():
 	pass
+
+
+func take_damage(damage: int) -> void:
+	print("🩸 PLAYER TAKING DAMAGE: ", damage)
+	print("Health before: ", health)
+	health -= damage
+	print("Health after: ", health)
+	
+	if health <= 0:
+		print("💀 PLAYER DIED!")
+		# Add death logic here
