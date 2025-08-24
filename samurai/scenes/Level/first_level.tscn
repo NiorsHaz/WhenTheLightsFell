@@ -712,11 +712,11 @@ tile_set = SubResource("TileSet_kb8q3")
 [node name="Decors" type="Node" parent="."]
 
 [node name="Statue8" type="Sprite2D" parent="Decors"]
-position = Vector2(3440, -46)
+position = Vector2(2856, -46)
 texture = ExtResource("2_7lc7k")
 
 [node name="Statue7" type="Sprite2D" parent="Decors"]
-position = Vector2(2959, -47)
+position = Vector2(2825, -47)
 texture = ExtResource("2_7lc7k")
 
 [node name="Statue6" type="Sprite2D" parent="Decors"]
@@ -724,12 +724,11 @@ position = Vector2(2787, -47)
 texture = ExtResource("2_7lc7k")
 
 [node name="Statue5" type="Sprite2D" parent="Decors"]
-position = Vector2(3026, -47)
+position = Vector2(2757, -47)
 texture = ExtResource("2_7lc7k")
 
 [node name="Tori-statue3" type="Sprite2D" parent="Decors"]
-position = Vector2(3181.5, -161.5)
-scale = Vector2(2.43519, 2.43519)
+position = Vector2(3259, -84)
 texture = ExtResource("1_ecu86")
 
 [node name="Statue4" type="Sprite2D" parent="Decors"]
@@ -737,8 +736,7 @@ position = Vector2(3738, -240)
 texture = ExtResource("2_7lc7k")
 
 [node name="Tori-statue2" type="Sprite2D" parent="Decors"]
-position = Vector2(1836, -131)
-scale = Vector2(4.29167, 4.29167)
+position = Vector2(1815, -85)
 texture = ExtResource("1_ecu86")
 
 [node name="Statue2" type="Sprite2D" parent="Decors"]
@@ -762,9 +760,9 @@ position = Vector2(3657, -47)
 texture = ExtResource("4_7lc7k")
 
 [node name="Statue11" type="Sprite2D" parent="Decors"]
-position = Vector2(3348, -49)
+position = Vector2(3607, -49)
 texture = ExtResource("4_7lc7k")
 
 [node name="Statue12" type="Sprite2D" parent="Decors"]
-position = Vector2(2865, -48)
+position = Vector2(3489, -48)
 texture = ExtResource("4_7lc7k")

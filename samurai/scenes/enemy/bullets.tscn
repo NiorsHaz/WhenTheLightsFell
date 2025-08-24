@@ -59,7 +59,6 @@ collision_mask = 2
 script = ExtResource("1_eha4u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_5phvj")
 frame_progress = 0.697402
 
