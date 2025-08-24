@@ -1,7 +1,50 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccgsbiapq3iha"]
+[gd_scene load_steps=11 format=3 uid="uid://ccgsbiapq3iha"]
 
 [ext_resource type="Script" uid="uid://d2gahoj70ipc0" path="res://script/bullets.gd" id="1_eha4u"]
-[ext_resource type="Texture2D" uid="uid://cmnsjfdu12a10" path="res://asset/fly_negga/projectile.png" id="1_y48fq"]
+[ext_resource type="Texture2D" uid="uid://b6pkgernc0law" path="res://asset/boss_negga/bullet-boss.png" id="2_eha4u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3psee"]
+atlas = ExtResource("2_eha4u")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umpme"]
+atlas = ExtResource("2_eha4u")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhxm7"]
+atlas = ExtResource("2_eha4u")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t6l0"]
+atlas = ExtResource("2_eha4u")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdyqo"]
+atlas = ExtResource("2_eha4u")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vihd4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3psee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umpme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhxm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6l0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdyqo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eha4u"]
 radius = 12.0
@@ -15,10 +58,9 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_eha4u")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-light_mask = 2
-visibility_layer = 2
-texture = ExtResource("1_y48fq")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vihd4")
+frame_progress = 0.689303
 
 [node name="Area2D" type="Area2D" parent="."]
 

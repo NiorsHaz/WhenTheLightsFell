@@ -29,5 +29,8 @@ func bullet():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name != "BossNegga":
-		print(body.name, " Took 1 damage")
-		body.take_damage(1)
+		if body.name == "StaticBody2D":
+			pass
+		else:
+			print(body.name, " Took 1 damage")
+			body.take_damage(1)

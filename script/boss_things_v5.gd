@@ -371,7 +371,7 @@ func _start_ranged_attack() -> void:
 	
 	# Animation de préparation d'attaque à distance
 	if sprite:
-		sprite.play("Load")
+		sprite.play("load")
 	
 	##print("Boss preparing ranged attack...")
 

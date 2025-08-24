@@ -2,23 +2,23 @@
 
 [ext_resource type="Script" uid="uid://g3x03vxk5h4d" path="res://script/boss_things_v5.gd" id="1_oam2m"]
 [ext_resource type="Texture2D" uid="uid://me1b46gu5udx" path="res://asset/boss_negga/boss-attack.png" id="2_11ikn"]
-[ext_resource type="Texture2D" path="res://asset/boss_negga/explosion-explosion.png" id="3_11ikn"]
-[ext_resource type="Texture2D" uid="uid://b7he3oqpcmwnm" path="res://asset/boss_negga/boss-idle.png" id="4_11ikn"]
-[ext_resource type="Texture2D" uid="uid://dlbqyu4qstbas" path="res://asset/boss_negga/boss-projectile.png" id="4_oam2m"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oam2m"]
-atlas = ExtResource("2_11ikn")
-region = Rect2(0, 0, 256, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n2i8p"]
-atlas = ExtResource("2_11ikn")
-region = Rect2(256, 0, 256, 128)
+[ext_resource type="Texture2D" uid="uid://ddbiqjbs4ef8p" path="res://asset/boss_negga/explosion-explosion.png" id="3_11ikn"]
+[ext_resource type="Texture2D" uid="uid://b7he3oqpcmwnm" path="res://asset/boss_negga/boss-idle.png" id="4_oam2m"]
+[ext_resource type="Texture2D" uid="uid://dlbqyu4qstbas" path="res://asset/boss_negga/boss-projectile.png" id="5_n2i8p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u0lvx"]
 atlas = ExtResource("2_11ikn")
-region = Rect2(512, 0, 256, 128)
+region = Rect2(0, 0, 256, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rubsq"]
+atlas = ExtResource("2_11ikn")
+region = Rect2(256, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqcxk"]
+atlas = ExtResource("2_11ikn")
+region = Rect2(512, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvlwh"]
 atlas = ExtResource("2_11ikn")
 region = Rect2(768, 0, 256, 128)
 
@@ -66,40 +66,40 @@ region = Rect2(288, 0, 32, 32)
 atlas = ExtResource("3_11ikn")
 region = Rect2(320, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r60e1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oam2m"]
 atlas = ExtResource("2_11ikn")
 region = Rect2(512, 0, 256, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nvlwh"]
-atlas = ExtResource("4_oam2m")
-region = Rect2(0, 0, 256, 128)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_84ruj"]
 atlas = ExtResource("4_oam2m")
-region = Rect2(256, 0, 256, 128)
+region = Rect2(0, 0, 256, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ss7ky"]
-atlas = ExtResource("4_oam2m")
-region = Rect2(512, 0, 256, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kqcxk"]
-atlas = ExtResource("4_11ikn")
+atlas = ExtResource("5_n2i8p")
 region = Rect2(0, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r60e1"]
+atlas = ExtResource("5_n2i8p")
+region = Rect2(256, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upvjd"]
+atlas = ExtResource("5_n2i8p")
+region = Rect2(512, 0, 256, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rubsq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oam2m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n2i8p")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_u0lvx")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rubsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqcxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvlwh")
 }],
 "loop": true,
 "name": &"Attack",
@@ -138,6 +138,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_063nm")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"Death",
@@ -145,7 +148,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r60e1")
+"texture": SubResource("AtlasTexture_oam2m")
 }],
 "loop": false,
 "name": &"Hit",
@@ -153,32 +156,45 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nvlwh")
+"texture": SubResource("AtlasTexture_84ruj")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_84ruj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ss7ky")
-}],
-"loop": true,
-"name": &"Load",
-"speed": 2.0
+"texture": SubResource("AtlasTexture_84ruj")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kqcxk")
+"texture": SubResource("AtlasTexture_84ruj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84ruj")
 }],
 "loop": true,
 "name": &"idle",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss7ky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r60e1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upvjd")
+}],
+"loop": true,
+"name": &"load",
+"speed": 2.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pmmpf"]
-height = 44.0
+radius = 23.0
+height = 100.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nvlwh"]
-size = Vector2(67, 62)
+size = Vector2(95, 104)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t67kq"]
 radius = 53.0848
@@ -187,8 +203,8 @@ radius = 53.0848
 size = Vector2(2758, 1324.01)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oam2m"]
-radius = 23.0
-height = 102.0
+radius = 21.4933
+height = 99.2878
 
 [node name="BossNegga" type="CharacterBody2D"]
 script = ExtResource("1_oam2m")
@@ -199,24 +215,24 @@ pattern_change_delay = 1.0
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_rubsq")
-animation = &"Attack"
+animation = &"Hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(-3, 17)
 shape = SubResource("CapsuleShape2D_pmmpf")
 debug_color = Color(0.978606, 0, 0.394829, 0.42)
 
 [node name="MeleeAttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttackArea"]
-position = Vector2(8.5, 0)
+position = Vector2(21.5, 11)
 shape = SubResource("RectangleShape2D_nvlwh")
 
 [node name="AreaAttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaAttackArea"]
+position = Vector2(0, 19)
 shape = SubResource("CircleShape2D_t67kq")
 
 [node name="PlayerDetectionArea" type="Area2D" parent="."]
@@ -230,7 +246,8 @@ debug_color = Color(0.564706, 0.929412, 0.941176, 0.239216)
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 3)
+position = Vector2(-11, 16)
+rotation = 0.314159
 shape = SubResource("CapsuleShape2D_oam2m")
 
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
