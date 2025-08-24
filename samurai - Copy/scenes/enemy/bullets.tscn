@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://ccgsbiapq3iha"]
+
+[ext_resource type="Script" uid="uid://hnuf6f2ynr67" path="res://scripts/enemy/bullets.gd" id="1_eha4u"]
+[ext_resource type="Texture2D" uid="uid://b5n4a81abr7bn" path="res://assets/tilemaps/bullet-enemy.png" id="2_kko78"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lepoi"]
+atlas = ExtResource("2_kko78")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5110u"]
+atlas = ExtResource("2_kko78")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lflxj"]
+atlas = ExtResource("2_kko78")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt3rs"]
+atlas = ExtResource("2_kko78")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar1xa"]
+atlas = ExtResource("2_kko78")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5phvj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lepoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5110u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lflxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt3rs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar1xa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y48fq"]
+radius = 2.99472
+height = 6.01039
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kko78"]
+radius = 3.0
+
+[node name="Bullets" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_eha4u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5phvj")
+frame_progress = 0.697402
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.56556
+shape = SubResource("CapsuleShape2D_y48fq")
+one_way_collision_margin = 0.0
+
+[node name="Area2D" type="Area2D" parent="."]
+rotation = 1.56556
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kko78")
+debug_color = Color(0.927054, 0.138095, 0.575461, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
