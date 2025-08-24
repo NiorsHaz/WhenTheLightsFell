@@ -90,7 +90,7 @@ shape = SubResource("WorldBoundaryShape2D_0tnpc")
 position = Vector2(2232, -111)
 
 [node name="flying_enemy" parent="Enemies" instance=ExtResource("4_lbhrr")]
-position = Vector2(91, -290)
+position = Vector2(192, -117)
 
 [node name="EnemyThings2" parent="Enemies" instance=ExtResource("3_lnu2h")]
 position = Vector2(495, -154)
@@ -105,7 +105,7 @@ position = Vector2(1036, -135)
 position = Vector2(1604, -158)
 
 [node name="flying_enemy2" parent="Enemies" instance=ExtResource("4_lbhrr")]
-position = Vector2(1279, -296)
+position = Vector2(1292, -169)
 
 [node name="flying_enemy3" parent="Enemies" instance=ExtResource("4_lbhrr")]
 position = Vector2(2514, -259)
