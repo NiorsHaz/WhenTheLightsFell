@@ -8,6 +8,7 @@ var speed = 150  # Increased speed for better visibility
 func _ready() -> void:
 	global_position = pos
 	global_rotation = rota
+	speed = speed
 	owner = get_parent()
 	#print(owner.name ," Bullet ready - pos: ", pos, " dir: ", dir, " rota: ", rota)
 

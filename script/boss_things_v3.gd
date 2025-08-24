@@ -116,7 +116,8 @@ func _enter_phase(new_phase: BossPhase) -> void:
 func _choose_random_pattern() -> void:
 	if current_phase == BossPhase.DECHAINEMENT:
 		# En phase 3, pas de pattern fixe, tout est aléatoire
-		return
+		current_pattern = AttackPattern.values()[randi() % AttackPattern.size()]
+		#return
 	
 	current_pattern = AttackPattern.values()[randi() % AttackPattern.size()]
 	#print("Boss chose pattern: ", AttackPattern.keys()[current_pattern])

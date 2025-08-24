@@ -289,19 +289,27 @@ func _handle_pattern_based_combat(distance_to_player: float, delta: float) -> vo
 func _handle_chaotic_combat(distance_to_player: float, delta: float) -> void:
 	match current_state:
 		BossState.WAITING:
-			if attack_timer <= 0:
+			if pattern_timer <= 0:
 				_choose_random_attack()
 		
 		BossState.MOVING_TO_MELEE:
 			if distance_to_player > melee_range:
 				_move_towards_player(delta)
 			else:
+				_start_melee_attack()
+		
+		BossState.ATTACKING_MELEE:
+			if attack_timer <= 0:
 				_execute_melee_attack()
 		
 		BossState.RETREATING:
-			if distance_to_player < ranged_attack_distance:
+			if distance_to_player < retreat_distance:
 				_move_away_from_player(delta)
 			else:
+				_start_ranged_attack()
+		
+		BossState.ATTACKING_RANGED:
+			if attack_timer <= 0:
 				_execute_ranged_attack()
 		
 		BossState.ATTACKING_AREA:

@@ -403,6 +403,9 @@ height = 50.0
 
 [node name="BossNegga" type="CharacterBody2D"]
 script = ExtResource("1_oam2m")
+phase2_speed_multiplier = 2.0
+phase3_speed_multiplier = 3.0
+pattern_change_delay = 1.0
 
 [node name="Node2D" type="Node2D" parent="."]
 
