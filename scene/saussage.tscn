@@ -133,7 +133,7 @@ animations = [{
 size = Vector2(23.2857, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdvn3"]
-size = Vector2(50.8572, 59.4286)
+size = Vector2(43.1429, 13.7143)
 
 [node name="saussage" type="CharacterBody2D"]
 scale = Vector2(1.75, 1.75)
@@ -155,6 +155,7 @@ debug_color = Color(0.703616, 0.271714, 1, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamgeTestBox"]
 light_mask = 3
-position = Vector2(0.571429, -6.85714)
+position = Vector2(10.8571, -1.14286)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_tdvn3")
 one_way_collision_margin = 0.0

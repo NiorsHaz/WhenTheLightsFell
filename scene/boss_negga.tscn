@@ -1,6 +1,6 @@
-[gd_scene load_steps=62 format=3 uid="uid://bdc4ddp1s1384"]
+[gd_scene load_steps=63 format=3 uid="uid://bdc4ddp1s1384"]
 
-[ext_resource type="Script" uid="uid://bfuu35fl85wyn" path="res://script/boss_things_v4.gd" id="1_oam2m"]
+[ext_resource type="Script" uid="uid://g3x03vxk5h4d" path="res://script/boss_things_v5.gd" id="1_oam2m"]
 [ext_resource type="Texture2D" uid="uid://djpcqkuujqaoa" path="res://asset/reaper_negga/png/attacking.png" id="2_11ikn"]
 [ext_resource type="Texture2D" uid="uid://0m5q0ohah4r6" path="res://asset/reaper_negga/png/death.png" id="3_oam2m"]
 [ext_resource type="Texture2D" uid="uid://c8128swb0t60v" path="res://asset/reaper_negga/png/idle2.png" id="4_11ikn"]
@@ -398,6 +398,9 @@ radius = 53.0848
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqcxk"]
 size = Vector2(2758, 1324.01)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oam2m"]
+height = 50.0
+
 [node name="BossNegga" type="CharacterBody2D"]
 script = ExtResource("1_oam2m")
 
@@ -434,5 +437,13 @@ rotation = 3.14159
 shape = SubResource("RectangleShape2D_kqcxk")
 debug_color = Color(0.564706, 0.929412, 0.941176, 0.239216)
 
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_oam2m")
+
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
 [connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hit_box_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hit_box_body_entered"]

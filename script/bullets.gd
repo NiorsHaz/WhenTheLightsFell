@@ -9,7 +9,7 @@ func _ready() -> void:
 	global_position = pos
 	global_rotation = rota
 	owner = get_parent()
-	print(owner.name ," Bullet ready - pos: ", pos, " dir: ", dir, " rota: ", rota)
+	#print(owner.name ," Bullet ready - pos: ", pos, " dir: ", dir, " rota: ", rota)
 
 # FIXED: Changed *physics*process to _physics_process
 func _process(delta: float) -> void:
