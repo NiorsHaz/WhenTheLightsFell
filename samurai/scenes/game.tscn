@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bxlqp2q5a8g1v"]
+[gd_scene load_steps=16 format=3 uid="uid://bxlqp2q5a8g1v"]
 
 [ext_resource type="Texture2D" uid="uid://cmd6qxox0a7ra" path="res://assets/tilemaps/tilemaps ground forest l4.png" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://d3qb73aiygc14" path="res://scenes/Player/player.tscn" id="1_yqjtg"]
@@ -10,8 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://ba435l6xjx80r" path="res://scenes/enemy/flying_enemy.tscn" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://n16cumd3bo5t" path="res://assets/tilemaps/tree-2.png" id="5_vtaks"]
 [ext_resource type="FontFile" uid="uid://difa2kwtj5phb" path="res://assets/retro-pixel-thick.ttf" id="8_dinhu"]
-[ext_resource type="PackedScene" path="res://scenes/enemy/boss_negga.tscn" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://bdc4ddp1s1384" path="res://scenes/enemy/boss_negga.tscn" id="8_gee14"]
 [ext_resource type="AudioStream" uid="uid://cg08mxo7xtqny" path="res://assets/Pixel Phantom.mp3" id="10_vtaks"]
+[ext_resource type="PackedScene" uid="uid://cdflimb4pt42c" path="res://scenes/ui/mobile_controls.tscn" id="13_kvuet"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gee14"]
 
@@ -256,3 +257,5 @@ stream = ExtResource("10_vtaks")
 volume_db = -15.036
 autoplay = true
 parameters/looping = true
+
+[node name="MobileControls" parent="." instance=ExtResource("13_kvuet")]

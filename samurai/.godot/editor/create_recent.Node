@@ -1,3 +1,5 @@
+TouchScreenButton
+CanvasLayer
 Timer
 Button
 ColorRect
@@ -6,4 +8,3 @@ VBoxContainer
 Control
 TextureButton
 Label
-CanvasLayer

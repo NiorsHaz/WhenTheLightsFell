@@ -1,10 +1,10 @@
-res://scene_intro.tscn
-res://scenes/game.gdshader
 res://scenes/game.tscn
+res://scenes/game.gdshader
 res://scenes/Player/player.tscn
 res://scenes/enemy/enemy_things.tscn
 res://scenes/enemy/flying_enemy.tscn
 res://scenes/game_over.tscn
 res://scenes/main.tscn
 res://intro-2.tscn
-res://scripts/scene_intro.gd
+res://scene_intro.tscn
+res://scenes/ui/mobile_controls.tscn
