@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://bxlqp2q5a8g1v"]
+
+[ext_resource type="Texture2D" uid="uid://cmd6qxox0a7ra" path="res://assets/tilemaps/tilemaps ground forest l4.png" id="1_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://d3qb73aiygc14" path="res://scenes/Player/player.tscn" id="1_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://pk6r7eemgdtq" path="res://assets/tilemaps/Drawing_3_1.png" id="2_gee14"]
+[ext_resource type="PackedScene" uid="uid://o40piwxp6a7e" path="res://scenes/Level/first_level.tscn" id="2_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://677lcvn2m71e" path="res://assets/tilemaps/Drawing_3_3_1.png" id="3_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://wu7rfkudc1tn" path="res://scenes/enemy/enemy_things.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://ba435l6xjx80r" path="res://scenes/enemy/flying_enemy.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bdc4ddp1s1384" path="res://scenes/enemy/boss_negga.tscn" id="8_gee14"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gee14"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0tnpc"]
+
+[node name="game" type="Node2D"]
+
+[node name="Background" type="Node" parent="."]
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="Background"]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Background/ParallaxBackground2"]
+motion_mirroring = Vector2(1400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer3"]
+position = Vector2(172, -412)
+scale = Vector2(2.88377, 3.75)
+texture = ExtResource("1_u5sy4")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background/ParallaxBackground2"]
+motion_mirroring = Vector2(1400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer2"]
+position = Vector2(-504.5, -127.5)
+scale = Vector2(0.5635, 0.639)
+texture = ExtResource("2_gee14")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background/ParallaxBackground2"]
+motion_mirroring = Vector2(1400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground2/ParallaxLayer"]
+position = Vector2(58, -149)
+texture = ExtResource("3_0tnpc")
+
+[node name="FirstLevel" parent="." instance=ExtResource("2_lnu2h")]
+position = Vector2(1, -4)
+
+[node name="player" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(-280, -202)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(26, 28)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-381, -298)
+physics_material_override = SubResource("PhysicsMaterial_gee14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(61, 1084)
+shape = SubResource("WorldBoundaryShape2D_0tnpc")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="EnemyThings5" parent="Enemies" instance=ExtResource("3_lnu2h")]
+position = Vector2(2232, -111)
+
+[node name="flying_enemy" parent="Enemies" instance=ExtResource("4_lbhrr")]
+position = Vector2(192, -117)
+
+[node name="EnemyThings2" parent="Enemies" instance=ExtResource("3_lnu2h")]
+position = Vector2(495, -154)
+
+[node name="EnemyThings" parent="Enemies" instance=ExtResource("3_lnu2h")]
+position = Vector2(-16, -238)
+
+[node name="EnemyThings3" parent="Enemies" instance=ExtResource("3_lnu2h")]
+position = Vector2(1036, -135)
+
+[node name="EnemyThings4" parent="Enemies" instance=ExtResource("3_lnu2h")]
+position = Vector2(1604, -158)
+
+[node name="flying_enemy2" parent="Enemies" instance=ExtResource("4_lbhrr")]
+position = Vector2(1292, -169)
+
+[node name="flying_enemy3" parent="Enemies" instance=ExtResource("4_lbhrr")]
+position = Vector2(2514, -259)
+
+[node name="BossNegga" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(3265, -168)
