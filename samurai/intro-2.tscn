@@ -1,0 +1,381 @@
+[gd_scene load_steps=31 format=3 uid="uid://dpj8twlowy1mq"]
+
+[ext_resource type="Texture2D" uid="uid://dipd5fcs8xb14" path="res://Instase Intro/80_Instase8.bmp" id="1_86m3t"]
+[ext_resource type="Script" uid="uid://routgjynx8hr" path="res://scripts/intro_2.gd" id="1_slc2y"]
+[ext_resource type="Texture2D" uid="uid://by5snuij3eb82" path="res://Instase Intro/80_Instase9.bmp" id="2_2fua8"]
+[ext_resource type="Texture2D" uid="uid://do3nm0vu0y4xj" path="res://Instase Intro/80_Instase10.bmp" id="3_w3ojg"]
+[ext_resource type="Texture2D" uid="uid://30vx2s5uxxfw" path="res://Instase Intro/80_Instase11.bmp" id="4_ked1m"]
+[ext_resource type="Texture2D" uid="uid://cnh4bdvoyg1fo" path="res://Instase Intro/80_Instase12.bmp" id="5_von0r"]
+[ext_resource type="Texture2D" uid="uid://cooqqary12uaj" path="res://Instase Intro/80_Instase13.bmp" id="6_axdfo"]
+[ext_resource type="Texture2D" uid="uid://qltwojro4bnk" path="res://Instase Intro/80_Instase14.bmp" id="7_jddf5"]
+[ext_resource type="Texture2D" uid="uid://qb2vbcoshoxo" path="res://Instase Intro/80_Instase15.bmp" id="8_lyjet"]
+[ext_resource type="Texture2D" uid="uid://pd6ed6lfujkr" path="res://Instase Intro/80_Instase16.bmp" id="9_cfn7o"]
+[ext_resource type="Texture2D" uid="uid://cosqlr2tvevab" path="res://Instase Intro/80_Instase17.bmp" id="10_5soyf"]
+[ext_resource type="Texture2D" uid="uid://b11x8345gan7y" path="res://Instase Intro/80_Instase18.bmp" id="11_fanwb"]
+[ext_resource type="Texture2D" uid="uid://cux3t3mp2vet3" path="res://Instase Intro/80_Instase19.bmp" id="12_mjrbn"]
+[ext_resource type="Texture2D" uid="uid://dr7ulvvxstiii" path="res://Instase Intro/80_Instase20.bmp" id="13_2oq44"]
+[ext_resource type="Texture2D" uid="uid://cn6et578jwk4v" path="res://Instase Intro/80_Instase21.bmp" id="14_ts3pu"]
+[ext_resource type="Texture2D" uid="uid://c7m375apjhsv" path="res://Instase Intro/80_Instase22.bmp" id="15_ot5pf"]
+[ext_resource type="Texture2D" uid="uid://cyv2bop6wpf61" path="res://Instase Intro/80_Instase23.bmp" id="16_o6mku"]
+[ext_resource type="Texture2D" uid="uid://b17m01ydbq3fp" path="res://Instase Intro/80_Instase24.bmp" id="17_vlxi3"]
+[ext_resource type="Texture2D" uid="uid://ps35tnyty0gd" path="res://Instase Intro/80_Instase25.bmp" id="18_ly7b2"]
+[ext_resource type="Texture2D" uid="uid://dtxnalmg043v2" path="res://Instase Intro/80_Instase26.bmp" id="19_kxf3b"]
+[ext_resource type="Texture2D" uid="uid://cqvuxkgx8xt4s" path="res://Instase Intro/80_Instase27.bmp" id="20_r7cju"]
+[ext_resource type="Texture2D" uid="uid://dydm7pbgckcfn" path="res://Instase Intro/80_Instase28.bmp" id="21_0vnti"]
+[ext_resource type="Texture2D" uid="uid://b78rfo3pdmbtu" path="res://Instase Intro/80_Instase29.bmp" id="22_jy7fc"]
+[ext_resource type="FontFile" uid="uid://difa2kwtj5phb" path="res://assets/retro-pixel-thick.ttf" id="23_e3ts7"]
+[ext_resource type="AudioStream" uid="uid://bx2u0jteeang2" path="res://11L-Something_burning_by-1755981256776.mp3" id="24_1uj6r"]
+[ext_resource type="AudioStream" uid="uid://bv88oexxu540d" path="res://11L-typing_on_keyboard-1756056259042.mp3" id="25_e3ts7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dlrns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_86m3t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2fua8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w3ojg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ked1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_von0r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_axdfo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jddf5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lyjet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_cfn7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5soyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fanwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mjrbn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_2oq44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ts3pu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ot5pf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_o6mku")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vlxi3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_ly7b2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_kxf3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_r7cju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_0vnti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_jy7fc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_fk2d8"]
+resource_name = "Instase"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1, 1.2, 1.5, 2, 2.2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["", "I", "IN", "INS", "INST", "INSTA", "INSTAS", "INSTASE"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FirstFlame:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1.86607, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SecondFlame:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.366667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ThirdFlame:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.633333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FourthFlame:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.866667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Keyboard:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.966667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_nhth1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FirstFlame:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SecondFlame:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ThirdFlame:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FourthFlame:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Keyboard:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xiuff"]
+_data = {
+&"Instase": SubResource("Animation_fk2d8"),
+&"RESET": SubResource("Animation_nhth1")
+}
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_slc2y")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1156.0
+offset_bottom = 649.0
+size_flags_horizontal = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.5
+offset_top = -141.0
+offset_right = 127.5
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/VBoxContainer"]
+z_index = 1
+position = Vector2(138, 93)
+sprite_frames = SubResource("SpriteFrames_dlrns")
+autoplay = "default"
+frame = 21
+frame_progress = 1.0
+speed_scale = 2.0
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("23_e3ts7")
+theme_override_font_sizes/font_size = 80
+
+[node name="BG" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1102.0
+offset_bottom = 602.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Fade" type="ColorRect" parent="Control"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1102.0
+offset_bottom = 602.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="FirstFlame" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("24_1uj6r")
+attenuation = 2.0
+
+[node name="SecondFlame" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("24_1uj6r")
+attenuation = 2.0
+
+[node name="ThirdFlame" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("24_1uj6r")
+attenuation = 2.0
+
+[node name="FourthFlame" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("24_1uj6r")
+attenuation = 2.0
+
+[node name="Keyboard" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("25_e3ts7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_xiuff")
+}
+autoplay = "Instase"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

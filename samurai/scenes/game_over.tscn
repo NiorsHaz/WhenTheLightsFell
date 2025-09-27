@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfco1ly7iuvxp"]
+
+[ext_resource type="Script" uid="uid://06o421jw2cib" path="res://scenes/game_over.gd" id="1_wqhvx"]
+[ext_resource type="FontFile" uid="uid://difa2kwtj5phb" path="res://assets/retro-pixel-thick.ttf" id="1_xeevv"]
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_wqhvx")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+
+[node name="Label" type="Label" parent="Control/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -464.0
+offset_top = -117.0
+offset_right = 464.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_xeevv")
+theme_override_font_sizes/font_size = 171
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="Control/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = 81.0
+offset_right = 32.5
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_xeevv")
+text = "Restart"
+
+[node name="Quit" type="Button" parent="Control/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = 124.0
+offset_right = 32.5
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_xeevv")
+text = "Quit"
+
+[connection signal="pressed" from="Control/CanvasLayer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Control/CanvasLayer/Quit" to="." method="_on_quit_pressed"]
