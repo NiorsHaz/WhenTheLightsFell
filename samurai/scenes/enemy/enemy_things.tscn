@@ -177,6 +177,8 @@ size = Vector2(129, 33.5)
 size = Vector2(41, 40)
 
 [node name="EnemyThings" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_18b52")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
@@ -220,8 +222,13 @@ debug_color = Color(0.662052, 0.513589, 1.92523e-07, 0.42)
 stream = ExtResource("6_waat0")
 volume_db = -6.265
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
+[connection signal="area_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_area_entered"]
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
 [connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]
 [connection signal="body_entered" from="attackBox" to="." method="_on_attack_box_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

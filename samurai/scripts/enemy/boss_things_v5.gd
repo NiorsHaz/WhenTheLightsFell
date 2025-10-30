@@ -77,10 +77,7 @@ func _ready() -> void:
 
 func _setup_hit_box() -> void:
 	if hit_box:
-		# Connecter le signal pour détecter quand quelque chose entre dans la hitbox
-		hit_box.body_entered.connect(_on_hit_box_body_entered)
-		hit_box.area_entered.connect(_on_hit_box_area_entered)
-		
+		pass	
 		#print("Boss HitBox configured successfully")
 	else:
 		pass
@@ -476,7 +473,7 @@ func _finish_attack() -> void:
 			var next_attack = _get_pattern_attack(pattern_step)
 			_start_attack_type(next_attack)
 
-func _move_towards_player(delta: float) -> void:
+func _move_towards_player(_delta: float) -> void:
 	var direction = (target_player.global_position - global_position).normalized()
 	# Ne modifier que la composante X de la vitesse pour rester au sol
 	velocity.x = direction.x * current_speed
@@ -486,7 +483,7 @@ func _move_towards_player(delta: float) -> void:
 	if sprite:
 		sprite.play("idle")  # ou "walk" si tu as une animation de marche
 
-func _move_away_from_player(delta: float) -> void:
+func _move_away_from_player(_delta: float) -> void:
 	if not target_player:
 		return
 	

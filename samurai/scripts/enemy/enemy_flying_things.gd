@@ -42,7 +42,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if player:
-		var direction = global_position.direction_to(player.global_position)
 		marker_2d.look_at(player.global_position)
 		if !is_dead:
 			$PlayerDetectionArea/CollisionShape2D.disabled = false
@@ -192,7 +191,7 @@ func set_patrol_radius(new_radius: float) -> void:
 	patrol_radius = new_radius
 
 
-func _on_hitbox_area_exited(area: Area2D) -> void:
+func _on_hitbox_area_exited(_area: Area2D) -> void:
 	pass # Replace with function body.
 
 func fire():

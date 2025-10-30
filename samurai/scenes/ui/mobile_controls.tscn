@@ -10,26 +10,30 @@
 [node name="MobileControls" type="CanvasLayer"]
 
 [node name="up" type="TouchScreenButton" parent="."]
-position = Vector2(919, 559)
+position = Vector2(832, 456)
+scale = Vector2(2.1875, 2.1875)
 texture_normal = ExtResource("1_n4yal")
 texture_pressed = ExtResource("2_0epx4")
 action = "ui_accept"
 
 [node name="left" type="TouchScreenButton" parent="."]
-position = Vector2(154, 562)
+position = Vector2(204, 469)
+scale = Vector2(1.98438, 1.98438)
 texture_normal = ExtResource("3_0ogjs")
 texture_pressed = ExtResource("4_dc6ed")
 action = "ui_right"
 
 [node name="right" type="TouchScreenButton" parent="."]
-position = Vector2(104, 625)
+position = Vector2(138, 601)
 rotation = 3.15251
+scale = Vector2(2.08894, 2.08894)
 texture_normal = ExtResource("3_0ogjs")
 texture_pressed = ExtResource("4_dc6ed")
 action = "ui_left"
 
 [node name="attack" type="TouchScreenButton" parent="."]
-position = Vector2(1033, 559)
+position = Vector2(1064, 471)
+scale = Vector2(1.98438, 1.98438)
 texture_normal = ExtResource("5_ym0fp")
 texture_pressed = ExtResource("6_71fxy")
 action = "attack"
